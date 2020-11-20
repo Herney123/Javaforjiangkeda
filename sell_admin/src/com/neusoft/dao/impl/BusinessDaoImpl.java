@@ -25,8 +25,12 @@ public class BusinessDaoImpl  implements BusinessDao {
             rs = pst.executeQuery();
             while (rs.next()){
                 Business business = new Business();
-                String businessName = rs.getString(3);
-                business.setBusinessName(businessName);
+                business.setBusinessId(rs.getInt("businessId"));
+                business.setBusinessName(rs.getString("businessName"));
+                business.setBusinessAddress(rs.getString("businessAddress"));
+                business.setBusinessExplain(rs.getString("businessExplain"));
+                business.setStartPrice(rs.getDouble("starPrice"));
+                business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
                 list.add(business);
             }
 
@@ -98,11 +102,49 @@ public class BusinessDaoImpl  implements BusinessDao {
 
     @Override
     public int updateBusiness(Business business) {
-        return 0;
+        int result = 0;
+        String sql = "update business set businessName = ?,businessAddress=? , businessExplain =?, starPrice=?, deliveryPrice = ? where businessId = ?";
+        try {
+            conn =  JDBCUtils.getConnection();
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,business.getBusinessName());
+            pst.setString(2,business.getBusinessAddress());
+            pst.setString(3,business.getBusinessExplain());
+            pst.setDouble(4,business.getStartPrice());
+            pst.setDouble(5,business.getDeliveryPrice());
+            pst.setInt(6,business.getBusinessId());
+            result = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
-    public Business getBusinessById() {
-        return null;
+    public Business getBusinessById(Integer businessId) {
+        Business business = null;
+        String sql = "select * from business where businessId = ?";
+        try {
+            conn = JDBCUtils.getConnection();
+            pst = conn.prepareStatement(sql);
+            pst.setInt(1, businessId);
+            rs = pst.executeQuery();
+            while (rs.next()){
+                business = new Business();
+                business.setBusinessId(rs.getInt("businessId"));
+                business.setBusinessName(rs.getString("businessName"));
+                business.setBusinessAddress(rs.getString("businessAddress"));
+                business.setBusinessExplain(rs.getString("businessExplain"));
+                business.setStartPrice(rs.getDouble("starPrice"));
+                business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close(rs, pst, conn);
+        }
+        return business;
+
     }
 }
