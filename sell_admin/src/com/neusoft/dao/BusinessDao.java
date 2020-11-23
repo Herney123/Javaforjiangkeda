@@ -8,6 +8,8 @@ public interface BusinessDao {
     // 所有商家列表
     public List<Business> listBusiness(String businessName,  String businessAddress);
     // 保存商家 返回值是 保存商家时自动生成的那个主键id
+    // 当前商家列表
+    public List<Business> listThisBusiness(Integer businessId);
 //    public void saveBusiness(Business business);
     public int saveBusiness(String businessName);
     // 删除商家
@@ -18,5 +20,6 @@ public interface BusinessDao {
     public Business getBusinessById(Integer businessId);
     // 通过id和password进行查询返回 Business对象
     public Business getBusinessByIdAndPassword(Integer businessId, String password);
-
+    // 更新密码
+    public int updateBusinessPassword(Integer businessId, String password);
 }
