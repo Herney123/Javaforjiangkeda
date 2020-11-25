@@ -52,7 +52,7 @@ public class LuckyMoneyRepositoryTests {
         luckyMoney.setConsumer("王五");
         luckyMoney.setMoney(new BigDecimal(21));
         luckyMoney.setProducer("赵六");
-        luckyMoney.setId(3);
+        luckyMoney.setId(2);
         repository.save(luckyMoney);
     }
 }
