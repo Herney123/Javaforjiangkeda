@@ -1,4 +1,3 @@
-
 package com.neusoft.springbootsell.dataobject;
 
 import com.neusoft.springbootsell.enums.OrderStatusEnum;

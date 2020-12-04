@@ -29,23 +29,23 @@
                 </tr>
                 </thead>
                 <tbody>
-                <#list categoryList as row>
-                    <tr>
-                        <td>
-                            ${row.categoryName}
-                        </td>
-                        <td>
-                            TB - Monthly
-                        </td>
-                        <td>
-                            01/04/2012
-                        </td>
-                        <td>
-                            Default
-                        </td>
-                    </tr>
+               <#list categoryList as row>
+                   <tr>
+                       <td>
+                           ${row.categoryName}
+                       </td>
+                       <td>
+                           TB - Monthly
+                       </td>
+                       <td>
+                           01/04/2012
+                       </td>
+                       <td>
+                           Default
+                       </td>
+                   </tr>
 
-                </#list>
+               </#list>
                 <tr class="success">
                     <td>
                         1

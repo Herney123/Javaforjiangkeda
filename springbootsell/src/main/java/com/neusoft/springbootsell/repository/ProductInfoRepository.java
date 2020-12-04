@@ -1,4 +1,3 @@
-
 package com.neusoft.springbootsell.repository;
 
 import com.neusoft.springbootsell.dataobject.ProductInfo;
